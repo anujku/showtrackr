@@ -10,7 +10,26 @@
     <link href="stylesheets/style.css" rel="stylesheet">
 </head>
 <body>
-
+<div class="navbar navbar-default navbar-static-top"
+     role="navigation" bs-navbar>
+    <div class="navbar-header">
+        <a class="navbar-brand" href="/">
+            <span class="glyphicon glyphicon-film"></span>
+            Show<strong>Trackr</strong></a>
+    </div>
+    <ul class="nav navbar-nav">
+        <li data-match-route="/$"><a href="/">Home</a></li>
+        <li data-match-route="/add"><a href="/add">Add</a></li>
+    </ul>
+    <ul class="nav navbar-nav pull-right" ng-if="!currentUser">
+        <li data-match-route="/login"><a href="/login">Login</a></li>
+        <li data-match-route="/signup"><a href="/signup">Sign up</a></li>
+    </ul>
+    <ul class="nav navbar-nav pull-right" ng-if="currentUser">
+        <li class="navbar-text" ng-bind="currentUser.email"></li>
+        <li><a href="javascript:void(0)" ng-click="logout()">Logout</a></li>
+    </ul>
+</div>
 <div ng-view></div>
 
 <script src="vendor/angular.js"></script>
@@ -21,5 +40,8 @@
 <script src="vendor/angular-route.js"></script>
 <script src="vendor/angular-cookies.js"></script>
 <script src="vendor/moment.min.js"></script>
+
+<script src="javascripts/app.js"></script>
+
 </body>
 </html>
