@@ -1,5 +1,8 @@
 var express = require('express'),
     path = require('path'),
+    async = require('async'),
+    request = require('request'),
+    _ = require('lodash'),
     logger = require('morgan'),
     cookieParser = require('cookie-parser'),
     bodyParser = require('body-parser'),
@@ -61,8 +64,8 @@ userSchema.methods.comparePassword = function (candidatePassword, cb) {
 // Mongoose models
 var User = mongoose.model('User', userSchema);
 var Show = mongoose.model('Show', showSchema);
-//mongoose.connect('localhost');
-
+//mongoose.connect('mongodb://admin:anujku123@localhost:USLC1P5Z52');
+mongoose.connect('USLC1P5Z52');
 // NodeJs Middleware
 var app = express();
 
@@ -187,7 +190,7 @@ app.post('/api/shows', function (req, res, next) {
                 }
                 return next(err);
             }
-            res.send(200);
+            res.sendStatus(200);
         });
     });
 });
