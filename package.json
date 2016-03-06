@@ -6,6 +6,7 @@
     "start": "node ./bin/www"
   },
   "dependencies": {
+    "agenda": "^0.8.0",
     "async": "^1.5.2",
     "bcryptjs": "^2.3.0",
     "body-parser": "~1.13.2",
@@ -17,10 +18,12 @@
     "lodash": "^4.6.1",
     "mongoose": "^4.4.6",
     "morgan": "~1.6.1",
+    "nodemailer": "^2.3.0",
     "passport": "^0.3.2",
     "passport-local": "^1.0.0",
     "request": "^2.69.0",
     "serve-favicon": "~2.3.0",
+    "sugar": "^1.4.1",
     "xml2js": "^0.4.16"
   },
   "devDependencies": {
