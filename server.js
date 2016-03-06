@@ -8,7 +8,11 @@ var express = require('express'),
     bodyParser = require('body-parser'),
     mongoose = require('mongoose'),
     xml2js = require('xml2js'),
+    session = require('express-session'),
+    passport = require('passport'),
+    LocalStrategy = require('passport-local').Strategy,
     bcrypt = require('bcryptjs');
+
 
 // Mongoose schemas
 var showSchema = new mongoose.Schema({
@@ -78,6 +82,17 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.listen(app.get('port'), function () {
     console.log('Express server listening on port ' + app.get('port'));
+});
+
+// passport serializations
+passport.serializeUser(function(user, done) {
+    done(null, user.id);
+});
+
+passport.deserializeUser(function(id, done) {
+    User.findById(id, function(err, user) {
+        done(err, user);
+    });
 });
 
 // Routes
