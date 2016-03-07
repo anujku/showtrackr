@@ -13,7 +13,7 @@ var express = require('express'),
     passport = require('passport'),
     LocalStrategy = require('passport-local').Strategy,
     bcrypt = require('bcryptjs'),
-    agenda = require('agenda')({db: {address: 'mongodb://USLC1P5Z52:27017/test'}}),
+    // agenda = require('agenda')({db: {address: 'mongodb://USLC1P5Z52:27017/test'}}),
     sugar = require('sugar'),
     nodemailer = require('nodemailer');
 
@@ -280,6 +280,8 @@ app.post('/api/shows', function (req, res, next) {
                 }
                 return next(err);
             }
+            var alertDate = Date.create('Next ' + show.airsDayOfWeek + ' at ' + show.airsTime).rewind({ hour: 2});
+            agenda.schedule(alertDate, 'send email alert', show.name).repeatEvery('1 week');
             res.sendStatus(200);
         });
     });
